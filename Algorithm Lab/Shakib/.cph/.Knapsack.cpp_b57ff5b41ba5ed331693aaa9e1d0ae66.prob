@@ -1,1 +1,0 @@
-{"name":"Local: Knapsack","url":"c:\\Users\\Shakib\\Desktop\\Algorithm Lab\\Shakib\\Knapsack.cpp","tests":[{"id":1736305926587,"input":"5\n50\n30 5\n40 10\n45 15\n77 20\n90 25","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Shakib\\Desktop\\Algorithm Lab\\Shakib\\Knapsack.cpp","group":"local","local":true}
