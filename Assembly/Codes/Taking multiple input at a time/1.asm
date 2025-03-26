@@ -1,0 +1,64 @@
+.model small
+.stack 100h
+
+.data
+a db "Enter four characters: $"
+
+.code
+main proc  
+    ; initialize data segment
+    mov ax, @data
+    mov ds, ax  
+    
+    ; print message
+    mov ah, 9
+    lea dx, a
+    int 21h
+    
+    ; take input
+    mov ah, 1
+    int 21h
+    mov bl, al     
+
+    mov ah, 1
+    int 21h
+    mov bh, al
+    
+    mov ah, 1
+    int 21h
+    mov cl, al
+    
+    mov ah, 1
+    int 21h
+    mov ch, al   
+    
+    ; new line
+    mov ah, 2
+    mov dl, 10  ; Line Feed (LF)
+    int 21h
+    mov dl, 13  ; Carriage Return (CR)
+    int 21h
+    
+    ; output characters
+    mov ah, 2
+    mov dl, bl
+    int 21h
+             
+    mov ah, 2
+    mov dl, bh
+    int 21h
+    
+    mov ah, 2
+    mov dl, cl
+    int 21h
+    
+    mov ah, 2
+    mov dl, ch
+    int 21h
+    
+    ; exit program
+    mov ah, 4Ch
+    int 21h
+
+main endp
+end main
