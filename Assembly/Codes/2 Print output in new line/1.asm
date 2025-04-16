@@ -13,9 +13,9 @@ main proc
     mov dl,10
     int 21h
     ;also you have to return cret
-    mov ah,2
-    mov dl,13
-    int 21h
+    ; mov ah,2
+    ; mov dl,13
+    ; int 21h
 
     ;show char output
     mov ah,2
