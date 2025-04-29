@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Demo</title>
+    <script>
+        function showMessage(eventType) {
+            document.getElementById("message").innerHTML = "I am a CSE student (Triggered by: " + eventType + ")";
+        }
+    </script>
+</head>
+<body>
+
+    <h2>JavaScript Event Demo</h2>
+
+    <!-- OnClick -->
+    <button onclick="alert('I am a CSE student')">Click Me</button><br><br>
+
+    <!-- OnMouseOver -->
+    <div onmouseover="showMessage('Mouseover')" 
+         style="width:200px; height:50px; border:1px solid black; text-align:center;">
+         Hover over this box
+    </div><br><br>
+
+    <!-- OnKeyPress via input -->
+    <input type="text" placeholder="Type something here" onkeypress="showMessage('Keypress in input')"><br><br>
+
+    <h4 id="message" style="margin-top:20px; border: 1px solid tomato; padding:5px;"></h4>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+CREATE DATABASE electronics_store;
+
+USE electronics_store;
+
+CREATE TABLE electronics (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    brand VARCHAR(100),
+    model VARCHAR(100),
+    price DECIMAL(10,2),
+    quantity INT,
+    description TEXT,
+    warranty_years INT,
+    added_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
