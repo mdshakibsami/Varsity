@@ -7,27 +7,28 @@ signed main()
 
     int n;
     cin >> n;
-    vector<int> burstTime, waitingTime, TurnAroundVec;
+    vector<int> burstTime, priority, waitingTime, TurnAroundVec;
     int turnAroundTime = 0;
     vector<string> process;
 
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        burstTime.push_back(x);
-        string s;
-        cin >> s;
-        process.push_back(s);
+        int bt, pr;
+        string name;
+        cin >> bt >> pr >> name;
+        burstTime.push_back(bt);
+        priority.push_back(pr);
+        process.push_back(name);
     }
 
-    // Sort by burst time (Shortest Job First)
+    // Sort by priority (lower value = higher priority)
     for (int i = 0; i < n; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
-            if (burstTime[i] > burstTime[j])
+            if (priority[i] > priority[j])
             {
+                swap(priority[i], priority[j]);
                 swap(burstTime[i], burstTime[j]);
                 swap(process[i], process[j]);
             }
@@ -49,12 +50,11 @@ signed main()
 
     for (int i = 0; i < n; i++)
         cout << process[i] << " => ";
-    cout << "end" << endl
-         << endl;
+    cout << "end" << endl << endl;
 
-    cout << "Process " << "   Burst Time " << "   Waiting Time" << "  " << "Turn Around Time" << endl;
+    cout << "Process " << "   Burst Time " << "   Priority " << "   Waiting Time" << "  " << "Turn Around Time" << endl;
     for (int i = 0; i < n; i++)
-        cout << process[i] << "            " << burstTime[i] << "          " << waitingTime[i] << "                " << TurnAroundVec[i] << endl;
+        cout << process[i] << "            " << burstTime[i] << "          " << priority[i] << "           " << waitingTime[i] << "                " << TurnAroundVec[i] << endl;
 
     cout << endl
          << "Total Turn Around Time: " << turnAroundTime << endl;

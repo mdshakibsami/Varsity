@@ -10,7 +10,6 @@ signed main()
     vector<int> burstTime, waitingTime, TurnAroundVec;
     int turnAroundTime = 0;
     vector<string> process;
-
     for (int i = 0; i < n; i++)
     {
         int x;
@@ -21,29 +20,16 @@ signed main()
         process.push_back(s);
     }
 
-    // Sort by burst time (Shortest Job First)
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = i + 1; j < n; j++)
-        {
-            if (burstTime[i] > burstTime[j])
-            {
-                swap(burstTime[i], burstTime[j]);
-                swap(process[i], process[j]);
-            }
-        }
-    }
+    // FCFS: No sorting — execute in the order given
 
     for (int i = 0; i < n; i++)
     {
-        waitingTime.push_back(turnAroundTime);
+        waitingTime.push_back(turnAroundTime); // WT = TA - AT; AT = 0
         turnAroundTime += burstTime[i];
         TurnAroundVec.push_back(turnAroundTime);
     }
 
-    float avgWaitingTime = 0;
-    for (auto x : waitingTime)
-        avgWaitingTime += x;
+    float avgWaitingTime = accumulate(waitingTime.begin(), waitingTime.end(), 0);
     avgWaitingTime /= n;
     cout << endl;
 
