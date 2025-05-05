@@ -21,11 +21,14 @@ signed main()
     for (int i = 0; i < n; i++)
         q.push(i);
 
+    vector<string> executionOrder;
+
     while (!q.empty())
     {
         int i = q.front();
         q.pop();
-        
+
+        executionOrder.push_back(process[i]); // store the process execution order
 
         if (remainingTime[i] > quantum)
         {
@@ -42,15 +45,20 @@ signed main()
         }
     }
 
+    // Print the execution sequence
+    cout << "\nExecution Order:\n";
+    for (int i = 0; i < executionOrder.size(); i++)
+    {
+        cout << executionOrder[i];
+        if (i != executionOrder.size() - 1)
+            cout << " => ";
+    }
+    cout << " => end\n\n";
+
     float avgWaitingTime = 0;
     for (int i = 0; i < n; i++)
         avgWaitingTime += waitingTime[i];
     avgWaitingTime /= n;
-
-    cout << endl;
-    for (int i = 0; i < n; i++)
-        cout << process[i] << " => ";
-    cout << "end" << endl << endl;
 
     cout << "Process " << "   Burst Time " << "   Waiting Time" << "  " << "Turn Around Time" << endl;
     for (int i = 0; i < n; i++)
