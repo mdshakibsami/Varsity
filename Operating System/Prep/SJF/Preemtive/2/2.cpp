@@ -49,7 +49,7 @@ int main()
         {
             // No process available to run — CPU idle
             currentTime++;
-            gantt.push_back("idl");
+            gantt.push_back("idle");
             continue;
         }
 
@@ -69,7 +69,7 @@ int main()
     // Calculate TAT and WT
     for (int i = 0; i < n; i++)
     {
-        TAT[i] = CT[i] - arrivalTime[i]; // Arrival time = 0, so TAT = CT - 0 = CT
+        TAT[i] = CT[i] - arrivalTime[i]; // TAT = CT - AT
         WT[i] = TAT[i] - brustTime[i];
     }
 

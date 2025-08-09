@@ -73,7 +73,7 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-        TAT[i] = CT[i];
+        TAT[i] = CT[i]- arrivalT[i];
         WT[i] = TAT[i] - brustTime[i];
     }
     for (auto p : grantt)
