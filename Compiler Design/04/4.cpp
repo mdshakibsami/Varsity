@@ -2,10 +2,7 @@
  * 04 Write a C++ program to test whether a given identifier is valid or not.
  */
 
-#include <iostream>
-#include <string>
-#include <cctype>
-#include <set>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
