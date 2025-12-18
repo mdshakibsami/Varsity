@@ -2,9 +2,7 @@
  * 07 Write a C++ program to count the number of operators from a given string.
  */
 
-#include <iostream>
-#include <string>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Function to check if substring is a valid operator
