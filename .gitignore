@@ -1,6 +1,7 @@
 *.exe
 
 
-
+test.cpp 
+test.txt
 
 *.php
