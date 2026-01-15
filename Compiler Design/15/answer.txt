@@ -1,0 +1,13 @@
+Left-Factored Grammar:
+A → aZ
+Z → b | c | d
+B → x | y
+
+
+2
+A 3 ab ac ad
+B 2 x y
+
+
+
+

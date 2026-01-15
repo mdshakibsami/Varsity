@@ -1,0 +1,13 @@
+7
+E TE'
+E' +TE'
+E' e
+T FT'
+T' *FT'
+T' e
+F id
+
+id+id*id
+
+
+

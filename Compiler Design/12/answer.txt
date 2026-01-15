@@ -1,0 +1,35 @@
+// Input: 
+8
+E TE'
+E' +TE'
+E' e
+T FT'
+T' *FT'
+T' e
+F (E)
+F id
+
+
+
+FOLLOW sets:
+FOLLOW(E) = { $ ) }
+FOLLOW(E') = { $ ) }
+FOLLOW(F) = { $ ) * + }
+FOLLOW(T) = { $ ) + }
+FOLLOW(T') = { $ ) + }
+
+
+
+// input :
+5
+E TE
+E e
+T FT
+T e
+F a
+
+
+FOLLOW sets:
+FOLLOW(E) = { $ }
+FOLLOW(F) = { $ a }
+FOLLOW(T) = { $ a }

@@ -1,0 +1,36 @@
+// Input: 
+8
+E TE'
+E' +TE'
+E' e
+T FT'
+T' *FT'
+T' e
+F (E)
+F id
+
+
+
+// Output:
+FIRST(E)  = { (, id }
+FIRST(E') = { +, ε }
+FIRST(T)  = { (, id }
+FIRST(T') = { *, ε }
+FIRST(F)  = { (, id }
+
+
+
+// input :
+5
+E TE
+E e
+T FT
+T e
+F a
+
+
+// output :
+FIRST(E) = { + e }
+FIRST(R) = { + e }
+FIRST(T) = { e }
+FIRST(Y) = { e }
