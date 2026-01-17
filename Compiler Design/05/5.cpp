@@ -1,62 +1,49 @@
 /*
-* 05 Write a C++ program to recognize strings under 'a', 'a*b+', 'abb'.
-*/
+ * 05 Write a C++ program to recognize strings under 'a', 'a*b+', 'abb'.
+ */
+
+/*
+ * 04 Write a C++ program to test whether a given identifier is valid or not.
+ */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    string s;
-    cout << "Enter a string: ";
-    cin >> s;
-
-    // Check for "a"
-    if (s == "a")
-    {
+    ifstream file;
+    string word;
+    file.open("input.txt");
+    file >> word;
+    if (word == "a")
         cout << "String belongs to language: a" << endl;
-    }
-
-    // Check for "abb"
-    else if (s == "abb")
-    {
-        cout << "String belongs to language: abb" << endl;
-    }
-
-    // Check for "a*b+"
+    else if (word == "abb")
+        cout << "String belongs to language: abb or a*b+" << endl;
     else
     {
-        int i = 0;
-
-        // Match zero or more 'a'
-        while (i < s.length() && s[i] == 'a')
+        int index = 0;
+        bool isValid = true;
+        for (int i = 0; i < word.size(); i++)
         {
-            i++;
-        }
-
-        // Must have at least one 'b'
-        if (i < s.length() && s[i] == 'b')
-        {
-            while (i < s.length() && s[i] == 'b')
+            if (word[i] == 'b')
             {
-                i++;
-            }
-
-            // If end reached, it's valid
-            if (i == s.length())
-            {
-                cout << "String belongs to language: a*b+" << endl;
-            }
-            else
-            {
-                cout << "String does not belong to given languages" << endl;
+                index = i;
+                break;
             }
         }
+        for (int i = index; i < word.size(); i++)
+        {
+
+            if (word[i] == 'a')
+            {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (isValid && word.size())
+            cout << "String belongs to language: a*b+" << endl;
         else
-        {
-            cout << "String does not belong to given languages" << endl;
-        }
+            cout << "Did not matched any language." << endl;
     }
-
-    return 0;
 }
