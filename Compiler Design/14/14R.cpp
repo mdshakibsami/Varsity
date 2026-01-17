@@ -2,30 +2,15 @@
  * PROBLEM: 14. Write a C++ program to perform right most derivation for a given set of production
  */
 
-
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <vector>
-#include <string>
+#include <bits/stdc++.h>
 using namespace std;
 
 map<char, vector<string>> grammar;
 char startSymbol;
 
-bool isNonTerminal(char c)
-{
-    return (c >= 'A' && c <= 'Z');
-}
-
 int main()
 {
     ifstream file("inputR.txt");
-    if (!file)
-    {
-        cout << "Error: input.txt not found\n";
-        return 0;
-    }
 
     int n;
     file >> n;
@@ -51,11 +36,12 @@ int main()
     {
         bool replaced = false;
         for (int i = result.length() - 1; i >= 0; i--)
-        { // scan **right to left**
-            if (isNonTerminal(result[i]))
+        {
+            // scan **right to left**
+            if (isupper(result[i]))
             {
                 char nt = result[i];
-                string prod = grammar[nt][0]; // choose first production
+                string prod = grammar[nt][0];
                 if (prod == "e")
                     result.replace(i, 1, "");
                 else

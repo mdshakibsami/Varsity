@@ -2,13 +2,7 @@
  * PROBLEM: 11: Write a C++ program to find FIRST values from a given set of productions
  */
 
-#include <iostream>
-#include <map>
-#include <set>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
+#include <bits/stdc++.h>
 using namespace std;
 
 map<string, vector<string>> grammar;
@@ -29,6 +23,7 @@ void findFirst(string symbol)
 
     for (string production : grammar[symbol])
     {
+        cout << "P " << production << endl;
         bool epsilonPossible = true;
 
         // Process production symbol by symbol
@@ -54,6 +49,8 @@ void findFirst(string symbol)
                 i++;
             }
 
+
+            
             // If terminal
             if (isTerminal(currentSymbol))
             {
@@ -89,16 +86,9 @@ void findFirst(string symbol)
     }
 }
 
-
 int main()
 {
     ifstream file("input.txt");
-
-    if (!file.is_open())
-    {
-        cout << "Error: input.txt file not found!" << endl;
-        return 0;
-    }
 
     int n;
     file >> n;
@@ -113,10 +103,8 @@ int main()
         stringstream ss(line);
         string lhs, rhs;
         ss >> lhs >> rhs;
-
         grammar[lhs].push_back(rhs);
     }
-
     file.close();
 
     // Compute FIRST for each non-terminal
