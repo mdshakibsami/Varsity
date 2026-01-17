@@ -7,9 +7,10 @@ using namespace std;
 
 int main()
 {
-    string id;
-    cout << "Enter an identifier: ";
-    cin >> id;
+    ifstream file;
+    string word;
+    file.open("input.txt");
+    file >> word;
 
     set<string> keywords = {
         "auto", "break", "case", "char", "const", "continue", "default",
@@ -18,37 +19,24 @@ int main()
         "sizeof", "static", "struct", "switch", "typedef", "union",
         "unsigned", "void", "volatile", "while"};
 
-    bool valid = true;
+    bool isValid = true;
 
-    // Check keyword
-    if (keywords.count(id))
-    {
-        valid = false;
-    }
-
-    // Check first character (only _ and alphabet)
-    else if (!(isalpha(id[0]) || id[0] == '_'))
-    {
-        valid = false;
-    }
-
-    // Check remaining characters
+    if (keywords.count(word) || !(isalpha(word[0]) || word[0] == '_'))
+        isValid = false;
     else
     {
-        for (int i = 1; i < id.length(); i++)
+        for (int i = 1; i < word.length(); i++)
         {
-            if (!(isalnum(id[i]) || id[i] == '_'))
+            if (!(isalnum(word[i]) || word[i] == '_'))
             {
-                valid = false;
+                isValid = false;
                 break;
             }
         }
     }
 
-    if (valid)
-        cout << "Valid identifier" << endl;
+    if (isValid)
+        cout << "This is a valid Identifier" << endl;
     else
-        cout << "Invalid identifier" << endl;
-
-    return 0;
+        cout << "This is a invalid Identifier" << endl;
 }
