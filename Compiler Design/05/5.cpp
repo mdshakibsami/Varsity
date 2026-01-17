@@ -2,9 +2,6 @@
  * 05 Write a C++ program to recognize strings under 'a', 'a*b+', 'abb'.
  */
 
-/*
- * 04 Write a C++ program to test whether a given identifier is valid or not.
- */
 
 #include <bits/stdc++.h>
 using namespace std;

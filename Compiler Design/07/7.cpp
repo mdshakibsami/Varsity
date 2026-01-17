@@ -5,53 +5,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to check if substring is a valid operator
-bool isOperator(const string &s)
+set<string> operators = {
+    "+", "-", "*", "/", "%", "=", "+=", "-=", "*=", "/=", "%=",
+    "==", "!=", ">", "<", ">=", "<=", "&&", "||", "!", "++", "--"};
+
+bool isOperator(string word)
 {
-    vector<string> operators = {
-        "+", "-", "*", "/", "%", "=",
-        "==", "!=", "<", ">", "<=", ">=",
-        "&&", "||", "!",
-        "+=", "-=", "*=", "/=", "%="};
-    for (auto op : operators)
-    {
-        if (s == op)
-            return true;
-    }
-    return false;
+    return operators.count(word);
 }
 
 int main()
 {
-    string str;
-    cout << "Enter a string: ";
-    getline(cin, str);
+    ifstream file;
+    string line;
+    int operatorCount = 0;
 
-    int count = 0;
+    file.open("input.txt");
+    getline(file, line);
 
-    for (int i = 0; i < str.size(); i++)
+    for (int i = 0; i < line.size(); i++)
     {
-        // Check 2-character operators first
-        if (i + 1 < str.size())
+        if ((i + 1) < line.size())
         {
-            string twoChar = str.substr(i, 2);
+            string twoChar = line.substr(i, 2);
             if (isOperator(twoChar))
             {
-                count++;
-                i++; // Skip next char
+                operatorCount++;
+                i++;
                 continue;
             }
         }
 
-        // Check 1-character operators
-        string oneChar = str.substr(i, 1);
+        string oneChar = line.substr(i, 1);
         if (isOperator(oneChar))
-        {
-            count++;
-        }
+            operatorCount++;
     }
-
-    cout << "Number of operators: " << count << endl;
-
-    return 0;
+    cout << "Total operators are " << operatorCount << endl;
 }
