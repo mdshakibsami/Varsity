@@ -2,11 +2,7 @@
  * PROBLEM: 15. Write a C++ program to perform left factoring for a given grammar
  */
 
-#include <iostream>
-#include <vector>
-#include <map>
-#include <string>
-#include <fstream>
+#include <bits/stdc++.h>
 using namespace std;
 
 /* ---------- Helper: Longest Common Prefix ---------- */

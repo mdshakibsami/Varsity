@@ -2,14 +2,7 @@
  * PROBLEM: 17. Write a C++ program for constructing of LL(1) parsing
  */
 
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <set>
-#include <vector>
-#include <stack>
-#include <string>
-#include <sstream>
+#include <bits/stdc++.h>
 using namespace std;
 
 map<string, vector<string>> grammar;

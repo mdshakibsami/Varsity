@@ -1,8 +1,5 @@
 /**
- * PROBLEM:
- * Design a lexical analyzer for the given language.
- * The lexical analyzer should ignore redundant spaces,
- * tabs, new lines, comments etc.
+ * PROBLEM: 10: Design a lexical analyzer for the given language. The lexical analyzer should ignore redundant spaces,tabs, new lines, comments etc.
  */
 
 #include <iostream>

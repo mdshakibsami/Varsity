@@ -1,14 +1,8 @@
 /**
- * PROBLEM: Write a C++ program to find FOLLOW values from a given set of productions
+ * PROBLEM: 12: Write a C++ program to find FOLLOW values from a given set of productions
  */
 
-#include <iostream>
-#include <map>
-#include <set>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
+#include <bits/stdc++.h>
 using namespace std;
 
 map<string, vector<string>> grammar;
