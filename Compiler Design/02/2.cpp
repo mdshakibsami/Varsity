@@ -22,7 +22,8 @@ int main()
 
     while (file.get(ch))
     {
-        characters++;
+        if (ch != ' ' && ch != '\n' && ch != '\t')
+            characters++;
 
         if (ch == '\n')
             lines++;
