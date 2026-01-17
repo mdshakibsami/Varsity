@@ -89,6 +89,7 @@ void findFirst(string symbol)
     }
 }
 
+
 int main()
 {
     ifstream file("input.txt");

@@ -2,130 +2,93 @@
  * PROBLEM: 10: Design a lexical analyzer for the given language. The lexical analyzer should ignore redundant spaces,tabs, new lines, comments etc.
  */
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <cctype>
-#include <fstream>
+#include <bits/stdc++.h>
 using namespace std;
 
-/* ---------- KEYWORDS ---------- */
-vector<string> keywords = {
+set<string> keywords = {
     "int", "float", "double", "char",
     "if", "else", "for", "while", "do",
-    "return", "void","main"};
+    "return", "void", "main"};
 
-/* ---------- OPERATORS ---------- */
-vector<string> operators = {
+set<string> operators = {
     "+", "-", "*", "/", "%", "=",
     "==", "!=", "<", ">", "<=", ">=",
     "&&", "||", "!", "+=", "-=", "*=", "/="};
 
-/* ---------- SEPARATORS ---------- */
-vector<char> separators = {
+set<char> separators = {
     '(', ')', '{', '}', '[', ']', ';', ',', '.'};
 
-/* ---------- CHECK FUNCTIONS ---------- */
-bool isKeyword(const string &s)
+bool isIdentifier(string word)
 {
-    for (auto k : keywords)
-        if (k == s)
-            return true;
-    return false;
-}
-
-bool isOperator(const string &s)
-{
-    for (auto op : operators)
-        if (op == s)
-            return true;
-    return false;
-}
-
-bool isSeparator(char c)
-{
-    for (char s : separators)
-        if (s == c)
-            return true;
-    return false;
-}
-
-bool isIdentifier(const string &s)
-{
-    if (s.empty())
-        return false;
-    if (!(isalpha(s[0]) || s[0] == '_'))
+    if (word.empty())
         return false;
 
-    for (char c : s)
+    if (!(isalpha(word[0]) || word[0] == '_'))
+        return false;
+    for (auto c : word)
+    {
         if (!(isalnum(c) || c == '_'))
             return false;
-
+    }
     return true;
 }
 
-bool isConstant(const string &s)
+bool isConstant(string word)
 {
-    if (s.empty())
+    if (word.empty())
         return false;
-    for (char c : s)
+
+    for (auto c : word)
+    {
         if (!isdigit(c))
             return false;
+    }
     return true;
 }
 
-/* ---------- MAIN ---------- */
 int main()
 {
-    ifstream file("input.c"); // input file
-    string line, code = "";
+    ifstream file("input.c");
+    string line, code;
 
-    if (!file.is_open())
-    {
-        cout << "Error: input.c file not found!" << endl;
-        return 0;
-    }
-
-    /* Read entire file */
     while (getline(file, line))
+    {
         code += line + '\n';
-
+    }
     file.close();
 
-    /* Lexical Analysis */
-    for (size_t i = 0; i < code.size();)
+    for (int i = 0; i < code.size();)
     {
-        /* Ignore spaces, tabs, newlines */
+        // Ignore spaces,tabs,newlines
         if (isspace(code[i]))
         {
             i++;
             continue;
         }
 
-        /* Ignore single-line comments */
-        if (code[i] == '/' && i + 1 < code.size() && code[i + 1] == '/')
+        // ignore single-line
+        if (code[i] == '/' && (i + 1) < code.size() && code[i + 1] == '/')
         {
             while (i < code.size() && code[i] != '\n')
                 i++;
             continue;
         }
 
-        /* Ignore multi-line comments */
-        if (code[i] == '/' && i + 1 < code.size() && code[i + 1] == '*')
+        // ignore multi-line
+        if (code[i] == '/' && (i + 1) < code.size() && code[i + 1] == '*')
         {
             i += 2;
-            while (i + 1 < code.size() &&
-                   !(code[i] == '*' && code[i + 1] == '/'))
+            while (i + 1 < code.size() && !(code[i] == '*' && code[i + 1] == '/'))
                 i++;
             i += 2;
             continue;
         }
 
-        /* Check 2-character operators */
+        // check two characters operator
         if (i + 1 < code.size())
         {
             string twoChar = code.substr(i, 2);
-            if (isOperator(twoChar))
+            if (operators.count(twoChar))
             {
                 cout << "Operator: " << twoChar << endl;
                 i += 2;
@@ -133,44 +96,37 @@ int main()
             }
         }
 
-        /* Check 1-character operator */
-        string oneChar(1, code[i]);
-        if (isOperator(oneChar))
+        // check one character operator
+        string oneChar = code.substr(i, 1);
+        if (operators.count(oneChar))
         {
             cout << "Operator: " << oneChar << endl;
             i++;
             continue;
         }
 
-        /* Check separator */
-        if (isSeparator(code[i]))
+        // separator
+        if (separators.count(code[i]))
         {
             cout << "Separator: " << code[i] << endl;
             i++;
             continue;
         }
 
-        /* Extract token */
+        // Extract token
         string token = "";
-        while (i < code.size() &&
-               !isspace(code[i]) &&
-               !isOperator(string(1, code[i])) &&
-               !isSeparator(code[i]))
+        while (i < code.size() && !isspace(code[i]) && !operators.count(code.substr(i, 1)) && !separators.count(code[i]))
         {
             token += code[i];
             i++;
         }
-
-        /* Classify token */
-        if (isKeyword(token))
-            cout << "Keyword: " << token << endl;
-        else if (isIdentifier(token))
-            cout << "Identifier: " << token << endl;
+        if (keywords.count(token))
+            cout << "Keyword " << token << endl;
         else if (isConstant(token))
-            cout << "Constant: " << token << endl;
+            cout << "Constant " << token << endl;
+        else if (isIdentifier(token))
+            cout << "Identifier " << token << endl;
         else
-            cout << "Invalid token: " << token << endl;
+            cout << "Invalid token" << endl;
     }
-
-    return 0;
 }
