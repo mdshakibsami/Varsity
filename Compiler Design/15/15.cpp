@@ -26,16 +26,12 @@ string longestCommonPrefix(vector<string> &v)
 int main()
 {
     ifstream file("input.txt"); // read from file
-    if (!file)
-    {
-        cout << "Error: input.txt not found\n";
-        return 0;
-    }
 
     int n;
-    file >> n; // number of non-terminals
+    file >> n;
+    file.ignore();
 
-    map<char, vector<string>> grammar;
+    map<char, vector<string>>grammar;
 
     for (int i = 0; i < n; i++)
     {

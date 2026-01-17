@@ -43,7 +43,6 @@ int main()
             {
                 char nt = result[i];
                 string prod = grammar[nt][0]; // choose first production
-                cout << prod << endl;
 
                 if (prod == "e")
                     result.replace(i, 1, "");
