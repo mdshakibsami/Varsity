@@ -5,44 +5,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to simulate NFA
-bool isIdentifier(const string &s)
+bool isValidIdentifier(string word)
 {
-    int state = 0; // Start state q0
+    int state = 0;
 
-    for (char ch : s)
+    for (auto ch : word)
     {
         switch (state)
         {
-        case 0: // Start state
+        case 0:
             if (isalpha(ch) || ch == '_')
-                state = 1; // valid first char
+                state = 1;
             else
-                return false; // invalid first char
+                return false;
             break;
 
-        case 1: // Accepting state q1
+        case 1:
             if (isalnum(ch) || ch == '_')
-                state = 1; // stay in q1
+                state = 1;
             else
-                return false; // invalid char
+                return false;
             break;
         }
     }
 
-    return (state == 1); // Accept if in q1
+    return (state == 1);
 }
 
 int main()
 {
-    string str;
-    cout << "Enter a string: ";
-    cin >> str;
+    ifstream file;
+    string identifier;
+    file.open("input.txt");
+    file >> identifier;
+    file.close();
 
-    if (isIdentifier(str))
-        cout << "Valid Identifier" << endl;
+    if (isValidIdentifier(identifier))
+        cout
+            << identifier << " is valid" << endl;
     else
-        cout << "Invalid Identifier" << endl;
-
-    return 0;
+        cout << identifier << " is not valid" << endl;
 }

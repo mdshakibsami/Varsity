@@ -1,71 +1,62 @@
 /**
  * PROBLEM: 09: Write a cpp program to implement DFA that recognized identifiers, constant and operators
+ */
 
- Testcase :
-    _sum
-    2value
-    10
-    +
-    +=
-    $value
- **/
-
-#include <iostream>
-#include <string>
-#include <cctype>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    string s;
-    cout << "Enter a string: ";
-    cin >> s;
+    ifstream file;
+    string word;
+    file.open("input.txt");
+    file >> word;
+    file.close();
 
     int state = 0;
-
-    for (char ch : s)
+    for (auto ch : word)
     {
         switch (state)
         {
-        // Start state
         case 0:
             if (isalpha(ch) || ch == '_')
-                state = 1; // Identifier
+                state = 1;
             else if (isdigit(ch))
-                state = 2; // Constant
-            else if (ch == '+' || ch == '-' || ch == '*' ||
+                state = 2;
+            else if (ch == '*' ||
                      ch == '/' || ch == '=' || ch == '<' || ch == '>')
-                state = 3; // Operator
+                state = 3;
+            else if (ch == '+' || ch == '-')
+                state = 4;
             else
                 state = -1;
             break;
 
-        // Identifier state
         case 1:
             if (isalnum(ch) || ch == '_')
                 state = 1;
             else
                 state = -1;
             break;
-
-        // Constant state
         case 2:
             if (isdigit(ch))
                 state = 2;
             else
                 state = -1;
             break;
-
-        // Operator state (check for compound operator)
         case 3:
             if (ch == '=')
-                state = 4; // Compound operator
+                state = 5;
             else
                 state = -1;
             break;
-
-        // Compound operator (only two chars allowed)
         case 4:
+            if (ch == '+' || ch == '-' || ch == '=')
+                state = 5;
+            else
+                state = -1;
+            break;
+        case 5:
             state = -1;
             break;
         }
@@ -78,10 +69,8 @@ int main()
         cout << "Identifier" << endl;
     else if (state == 2)
         cout << "Constant" << endl;
-    else if (state == 3 || state == 4)
+    else if (state == 3 || state == 4 || state == 5)
         cout << "Operator" << endl;
     else
-        cout << "Invalid token" << endl;
-
-    return 0;
+        cout << "Invalid" << endl;
 }
