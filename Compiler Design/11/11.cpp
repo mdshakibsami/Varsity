@@ -92,7 +92,7 @@ int main()
 
     int n;
     file >> n;
-    file.ignore(); // Ignore newline after number
+    file.ignore(); 
 
     for (int i = 0; i < n; i++)
     {
